@@ -1,0 +1,14 @@
+{
+	"name" : "jqtags/jq-select",
+	"type" : "tag",
+	"description" : "fancy select box",
+	"keywords" : [
+		"x-tag",
+		"polymer",
+		"pitana"
+	],
+	"license" : "MIT",
+	"require" : {
+		"jqgeeks/jqtag" : ">=0.0.0"
+	}
+}
