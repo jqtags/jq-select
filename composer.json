@@ -9,6 +9,7 @@
 	],
 	"license" : "MIT",
 	"require" : {
+		"jqmodules/smart_autocomplete" : ">=0.0.0",
 		"jqgeeks/jqtag" : ">=0.0.0"
 	}
 }
