@@ -1,76 +1,64 @@
-utils.define('jqtags.select').extend('jqtag').as(function(select,_select_, _attr_){
+_tag_("jqtags.select",function(select){
 	
-	select.register({
+	var jq = module("jQuery");
+	
+	return {
 	    tagName: "jq-select",
 	    events: {
-	        "click":"intialize"
+	    	"changed.bs.select" : "updateOptions",
+	    	//"change" : "oMyChange",
+	    	//"input" : "oMyChange"
 	    },
 	    accessors: {
 	        value: {
 	            type: "string",
-	            default : ""
+	            default : "",
+	            onChange : "valueOnChange"
 	        },
-	        NAV_MODE : {
-	        	type : 'string'
+	        multivalue: {
+	            type: "string",
+	            default : "",
+	            onChange : "valueOnChange"
+	        },
+	        multiple : {
+	        	type : "boolean",
+	        	default : false
 	        }
 	    },
-	    attachedCallback: function () {
+	    methods : ["updateOptions"],
+	    attachedCallback : function () {
 	    	var self = this;
-	    	this.options = GET_OPTION();
-	        this.$.innerHTML = this.$.text || this.getHTML();
-	    },
-	    getHTML : function(){
-	    	var self = this;
-	    	return '<input readonly value="' + this.options.filter(function(opt,i){
-	        	return self.$.value === opt.value;
-	        })[0].text + '"/>';
-	    },
-	    intialize : function(e){
-	    	console.error("intialize",e);
-	    	var self = this;
-	    	if(this.$.NAV_MODE !== 'EDIT'){
-		    	self.$input = $("<input value='"+this.$.textContent+"'>")
-		    	$(this.$).empty().append(self.$input); 
-		    	self.$input.smartAutoComplete({ 
-		    		disabled : false,
-		    		forceSelect : true,
-		    		filter : function(){
-		    			return self.options;
-		    		},
-		    		resultFormatter: function(result){
-		    			return '<li value="'+result.value +'">'+ result.text + '</li>';
-		    		}
+	    	if(this.$.tagName !== "SELECT"){
+		    	this.$.innerHTML = "<select "
+		    		+ (this.$.multiple?"multiple" : "") +
+		    		">"+this.$.innerHTML+"</select>";
+		    	this.$select = jq(this.$).find("select");
+		    	this.$select.val((this.$.value+"").split(","))
+		    	this.$select.data(this.$.dataset).selectpicker();
+		    	this.$select.detach();
+		    	this.$select.change(function(e){
+		    		console.log("changing",e);
+		    		self.$.value = self.$select.val();
+		    		//self.$.multivalue = self.$select.val();
+		    		self.trigger("change");
+		    		self.trigger("input");
 		    	});
-		    	self.$input.bind({
-		    		itemSelect : function(e,target){
-		    			self.$.value = $(target).attr('value');
-		    			self.deinit(e);
-		    		},
-		    		lostFocus : function(e){
-		    			self.deinit(e);
-		    		}
-		    	});
-		    	self.$input.select();
+	    	} else {
+	    		jq(this.$).selectpicker();
 	    	}
-	    	this.$.NAV_MODE = 'EDIT';
 	    },
-	    deinit : function(e){
-	    	var self = this;
-			console.error("eee",e);
-			setTimeout(function(){
-		    	self.$input.smartAutoComplete({
-		    		disabled : true
-		    	});
-				self.$.innerHTML = self.getHTML();
-				self.$input.remove();
-				self.$.NAV_MODE = 'NONE';
-			});
-	    }
-	});
-	
+	    detachedCallback : function(){
+	    	this.$select.selectpicker("destroy");
+	    },
+	    oMyChange : function(e){
+	    	console.log("oMyChange",e)
+	    },
+	    valueOnChange : function(e,oldValue,newValue){
+	    	console.log("valueOnChange",e,oldValue,newValue);
+	    	this.$select.selectpicker("val",(newValue+"").split(","));
+	    },
+    	updateOptions : function(options){
+    		console.log("updint",options);
+    	}
+	};
 });
-
-var GET_OPTION = function(){
-	return [ { text : "Scott Joplin",value : "scott" }, { text : "Charles Bolden", value : "char"}]
-};
-

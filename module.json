@@ -1,0 +1,11 @@
+{
+	"name": "jqtags/jq-select",
+	"jqtags/jq-select": {
+		"js": ["jqtags.select.js"],
+		"on": ["webmodules/jqtag","jqmodules/bootstrap-select"]
+	},
+	"jqtags/jq-select/test": {
+		"js": ["test/jqtags.select.test.js"],
+		"on": ["jqtags/jq-select", "webmodules/jquery/ui", "jqmodules/bootstrap-select"]
+	}
+}
