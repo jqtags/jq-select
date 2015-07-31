@@ -1,15 +1,12 @@
 {
-	"name" : "jqtags/jq-select",
-	"type" : "tag",
-	"description" : "fancy select box",
-	"keywords" : [
-		"x-tag",
-		"polymer",
-		"pitana"
-	],
-	"license" : "MIT",
-	"require" : {
-		"jqmodules/smart_autocomplete" : ">=0.0.0",
-		"jqgeeks/jqtag" : ">=0.0.0"
+	"name": "jqtags/jq-select",
+	"type": "tag",
+	"description": "fancy select box",
+	"keywords": ["x-tag", "polymer", "pitana"],
+	"license": "MIT",
+	"require": {
+		"jqmodules/smart_autocomplete": ">=0.0.0",
+		"jqgeeks/jqtag": ">=0.0.0",
+		"jqmodules/bootstrap-select": "1.*"
 	}
 }

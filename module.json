@@ -2,7 +2,7 @@
 	"name": "jqtags/jq-select",
 	"jqtags/jq-select": {
 		"js": ["jqtags.select.js"],
-		"on": ["webmodules/jqtag","jqmodules/bootstrap-select"]
+		"on": ["webmodules/jqtag", "jqmodules/bootstrap-select"]
 	},
 	"jqtags/jq-select/test": {
 		"js": ["test/jqtags.select.test.js"],
