@@ -5,8 +5,8 @@
 	"keywords": ["x-tag", "polymer", "pitana"],
 	"license": "MIT",
 	"require": {
+		"webmodules/jqtag": ">=0.0.0",
 		"jqmodules/smart_autocomplete": ">=0.0.0",
-		"jqgeeks/jqtag": ">=0.0.0",
 		"jqmodules/bootstrap-select": "1.*"
 	}
 }
