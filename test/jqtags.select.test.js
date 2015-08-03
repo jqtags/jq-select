@@ -8,23 +8,24 @@ define({
 	module("jquery-ui");
 	
 	return {
+		src : [
+		       "jqtags.select.test.html"
+		],
 		events : {
-			"change .myselectbox" : "oho",
-			"change jq-slider" : "oho"
+			"change jq-slider" : "dropdownChanged"
 		},
 		_init_ : function(){
-			_importStyle_("jqmodules/bootstrap-select","jqtags/jq-slider");
+			_importStyle_("jqmodules/bootstrap-select");
 			var self = this;
-			this.view("select.test.html").done(function(){
-				console.log("loaded");
+			this.view("jqtags.select.test.html").done(function(){
 				self.model({
-					testvalue : ["R","K"],
+					testvalue : ["amr","akb"],
 					rangeValue : [3,6]
 				});
 			});
 		},
-		oho : function(a,b,c){
-			console.log("oho",a,b,c)
+		dropdownChanged : function(a,b,c){
+			console.log("dropdownChanged",a,b,c);
 		},
 		_remove_ : function(){
 			
