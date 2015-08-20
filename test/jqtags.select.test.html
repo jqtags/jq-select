@@ -1,20 +1,34 @@
-Input Values : 
+Input Values :
 <input rv-value="model.testvalue">
 {model.testvalue}
 <br/>
 
 <select is=jq-select class="myselectbox" multiple rv-value="model.testvalue">
-	<option value="amr">Amar</option>
-	<option value="akb" >Akbar</option>
-	<option value="ant" >Anthony</option>
+    <option value="amr">Amar</option>
+    <option value="akb">Akbar</option>
+    <option value="ant">Anthony</option>
 </select>
 <br/>
 
 
 <jq-select data-max-options="2" class="myselectbox" multiple rv-value="model.testvalue">
-	<option value="amr">Amar</option>
-	<option value="akb" >Akbar</option>
-	<option value="ant" >Anthony</option>
+    <option value="amr">Amar</option>
+    <option value="akb">Akbar</option>
+    <option value="ant">Anthony</option>
+</jq-select>
+
+
+<jq-select data-max-options="2" class="myselectbox2" multiple rv-value="model.testvalue" data-live-search="true">
+    <optgroup label="Picnic">
+        <option value="amr">Amar</option>
+        <option value="akb">Akbar</option>
+        <option value="ant">Anthony</option>
+    </optgroup>
+    <optgroup label="Picnic2">
+        <option value="amr2">Amar</option>
+        <option value="akb3">Akbar</option>
+        <option value="ant4">Anthony</option>
+    </optgroup>
 </jq-select>
 
 <br/>

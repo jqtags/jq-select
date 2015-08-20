@@ -12,7 +12,7 @@ define({
 		       "jqtags.select.test.html"
 		],
 		events : {
-			"change jq-slider" : "dropdownChanged"
+			"change jq-select" : "dropdownChanged"
 		},
 		_init_ : function(){
 			_importStyle_("jqmodules/bootstrap-select");
@@ -26,6 +26,7 @@ define({
 		},
 		dropdownChanged : function(a,b,c){
 			console.log("dropdownChanged",a,b,c);
+			console.log("testvalue",this.model().testvalue);
 		},
 		_remove_ : function(){
 			
