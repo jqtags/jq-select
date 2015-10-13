@@ -11,8 +11,8 @@ _tag_("jqtags.select",function(select){
   return {
     tagName: "jq-select",
     events: {
-      "changed.bs.select" : "updateOptions"
-      //"change" : "oMyChange",
+      "changed.bs.select" : "updateOptions",
+      "change .bs-searchbox input" : "searchChange"
       //"input" : "oMyChange"
     },
     accessors: {
@@ -77,15 +77,14 @@ _tag_("jqtags.select",function(select){
     detachedCallback : function(){
       this.$select.selectpicker("destroy");
     },
-    oMyChange : function(e){
-      console.log("oMyChange",e)
-    },
     valueOnChange : function(e,oldValue,newValue){
-      console.log("valueOnChange",e,oldValue,newValue);
       this.$select.selectpicker("val",this.toList(newValue));
     },
     updateOptions : function(options){
       console.log("updint",options);
+    },
+    searchChange : function(e){
+      return preventPropagation(e);
     }
   };
 });
