@@ -31,7 +31,7 @@ _tag_("jqtags.select",function(select){
         default : false
       }
     },
-    methods : ["updateOptions"],
+    methods : ["setOptions"],
     attachedCallback : function () {
       var self = this;
       if(this.$.tagName !== "SELECT"){
@@ -50,21 +50,7 @@ _tag_("jqtags.select",function(select){
         this.trigger("jq.query", {
           value : this.$.value,
           callback : function(data){
-            var optionsString = "";
-            for(var i in data){
-              if(data[i].children!==undefined){
-                optionsString+=makeOptionGroup(data[i]);
-                for(var j in data[i].children){
-                  optionsString+=makeOptionString(data[i].children[j]);
-                }
-                optionsString+="</option>";
-              } else {
-                optionsString+=makeOptionString(data[i]);
-              }
-            }
-            self.$select.html(optionsString);
-            self.$select.val(self.toList(self.$.value));
-            self.$select.selectpicker("refresh");
+              self.updateOptions(data);
           }
         });
       } else {
@@ -80,8 +66,23 @@ _tag_("jqtags.select",function(select){
     valueOnChange : function(e,oldValue,newValue){
       this.$select.selectpicker("val",this.toList(newValue));
     },
-    updateOptions : function(options){
-      console.log("updint",options);
+    setOptions : function(options){
+      var self = this;
+      var optionsString = "";
+      for(var i in options){
+        if(options[i].children!==undefined){
+          optionsString+=makeOptionGroup(options[i]);
+          for(var j in options[i].children){
+            optionsString+=makeOptionString(options[i].children[j]);
+          }
+          optionsString+="</option>";
+        } else {
+          optionsString+=makeOptionString(options[i]);
+        }
+      }
+      self.$select.html(optionsString);
+      self.$select.val(self.toList(self.$.value));
+      self.$select.selectpicker("refresh");
     },
     searchChange : function(e){
       return preventPropagation(e);
