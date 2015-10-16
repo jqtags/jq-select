@@ -61,7 +61,7 @@ _tag_("jqtags.select", function (select) {
         this.trigger("jq.query", {
           value: this.$.value,
           callback: function (data) {
-            self.updateOptions(data);
+            self.setOptions(data);
           }
         });
       } else {
