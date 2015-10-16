@@ -13,7 +13,6 @@ _tag_("jqtags.select", function (select) {
   return {
     tagName: "jq-select",
     events: {
-      "changed.bs.select": "updateOptions",
       "change .bs-searchbox input": "searchChange"
     },
     accessors: {
