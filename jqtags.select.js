@@ -70,7 +70,9 @@ _tag_("jqtags.select", function (select) {
     },
     oMyChange: function () {
       var self = this;
-      self.$.value = self.$select.val();
+      if(this.$select){
+        self.$.value = self.$select.val();
+      }
       self.trigger("change");
       self.trigger("input");
     },
@@ -78,10 +80,14 @@ _tag_("jqtags.select", function (select) {
       return is.String(str) && !is.Empty(str) && !isCorrupted[str] ? str.split(",") : (is.Array(str) ? str : []);
     },
     detachedCallback: function () {
-      this.$select.selectpicker("destroy");
+      if(this.$select){
+        this.$select.selectpicker("destroy");
+      }
     },
     valueOnChange: function (e, oldValue, newValue) {
-      this.$select.selectpicker("val", this.toList(newValue));
+      if(this.$select){
+        this.$select.selectpicker("val", this.toList(newValue));
+      }
     },
     setOptions: function (options) {
       var self = this;
@@ -97,9 +103,11 @@ _tag_("jqtags.select", function (select) {
           optionsString += makeOptionString(options[i]);
         }
       }
-      self.$select.html(optionsString);
-      self.$select.val(self.toList(self.$.value));
-      self.$select.selectpicker("refresh");
+      if(self.$select){
+        self.$select.html(optionsString);
+        self.$select.val(self.toList(self.$.value));
+        self.$select.selectpicker("refresh");
+      }
     },
     searchChange: function (e) {
       return preventPropagation(e);
