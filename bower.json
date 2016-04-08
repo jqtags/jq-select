@@ -5,6 +5,7 @@
 	"description": "fancy bootstrap select",
 	"keywords": ["pitana", "jquery"],
 	"dependencies": {
+    "webmodules-foo": ">=3.1.10",
 		"webmodules-jqtag": ">=0.0.0",
 		"jqmodules-bootstrap-select": "1.*"
 	},
