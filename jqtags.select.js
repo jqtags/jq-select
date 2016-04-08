@@ -77,7 +77,7 @@ _tag_("jqtags.select", function (select) {
       self.trigger("input");
     },
     toList: function (str) {
-      return is.String(str) && !is.Empty(str) && !isCorrupted[str] ? str.split(",") : (is.Array(str) ? str : []);
+      return to.List(str);
     },
     detachedCallback: function () {
       if(this.$select){
