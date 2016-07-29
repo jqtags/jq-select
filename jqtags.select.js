@@ -48,7 +48,7 @@ _tag_("jqtags.select", function (select) {
         this.$select.detach();
         this.$select.change(function (e) {
           if (self.$.live) {
-            self.$.value = self.$select.val();
+            self.$.value = self.$select.val() || "";
             self.trigger("change");
             self.trigger("input");
           }
@@ -71,7 +71,7 @@ _tag_("jqtags.select", function (select) {
     oMyChange: function () {
       var self = this;
       if(this.$select){
-        self.$.value = self.$select.val();
+        self.$.value = self.$select.val() || "";
       }
       self.trigger("change");
       self.trigger("input");
