@@ -33,6 +33,11 @@ _tag_("jqtags.select", function (select) {
       live: {
         type: "boolean",
         default: true
+      },
+      disabled : {
+        type: "string",
+        default: "disabled",
+        onChange: "disabledOnChange"
       }
     },
     methods: ["setOptions"],
@@ -111,6 +116,13 @@ _tag_("jqtags.select", function (select) {
     },
     searchChange: function (e) {
       return preventPropagation(e);
+    },
+    disabledOnChange : function(e, oldValue, newValue){
+    	if(this.$.hasAttribute('disabled')){
+    		this.$select.attr("disabled",true);
+    	} else {
+    		this.$select.removeAttr("disabled");
+    	}
     }
   };
 });
