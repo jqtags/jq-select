@@ -2,7 +2,7 @@
 
 ###Examples
 ```html
-<jq-select data-max-options="2" class="myselectbox" multiple rv-value="model.testvalue">
+<jq-select data-max-options="2" class="myselectbox" multiple rv-value="model.testvalue" data-actions-box="true">
 	<option value="amr">Amar</option>
 	<option value="akb" >Akbar</option>
 	<option value="ant" >Anthony</option>
