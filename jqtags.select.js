@@ -54,8 +54,13 @@ _tag_("jqtags.select", function (select) {
         this.$select.change(function (e) {
           if (self.$.live) {
             self.$.value = self.$select.val() || "";
-            self.trigger("change");
+            
+            /** order of events is important here. 
+              * (e.g. for any callback to read the updated value should be reflected in advance, 
+              * which is possible only if input event is triggered first)
+              */
             self.trigger("input");
+            self.trigger("change");
           }
         });
         this.$select.on("hidden.bs.select", function () {
@@ -78,8 +83,12 @@ _tag_("jqtags.select", function (select) {
       if(this.$select){
         self.$.value = self.$select.val() || "";
       }
-      self.trigger("change");
+      /** order of events is important here. 
+        * (e.g. for any callback to read the updated value should be reflected in advance, 
+        * which is possible only if input event is triggered first)
+        */
       self.trigger("input");
+      self.trigger("change");
     },
     toList: function (str) {
       return to.List(str);
